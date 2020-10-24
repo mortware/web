@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+    mortware-web:
+        container_name: mortware-web
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 1337:80

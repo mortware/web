@@ -186,7 +186,7 @@ export const skills = {
             }]
         }
     ],
-    other: ["Azure DevOps", "BDD", "TDD", "Automated Testing", "Git", "Unit Testing", "Node.js", "Agile SCRUM", "Sketch", "Jira", "TeamCity", "Octopus"]
+    other: ["Azure DevOps", "Docker", "BDD", "TDD", "Automated Testing", "Git", "Unit Testing", "Node.js", "Agile SCRUM", "Sketch", "Jira", "TeamCity", "Octopus"]
 }
 
 export const interests = [

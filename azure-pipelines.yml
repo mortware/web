@@ -19,7 +19,7 @@ stages:
     steps:
       - task: Docker@2
         inputs:
-          containerRegistry: 'DockerHubMortware'
+          containerRegistry: 'mortware-docker-hub'
           repository: 'mortware/web'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'

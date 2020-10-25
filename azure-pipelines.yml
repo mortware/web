@@ -23,6 +23,6 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'Docker Hub'
-        repository: 'web'
+        repository: 'mortware/web'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'

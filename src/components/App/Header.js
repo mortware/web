@@ -4,7 +4,7 @@ import Menu from './Menu';
 
 const Header = () => (
     <header className="print:hidden  bg-brand-primary text-white">
-        <div className="container flex items-center mx-auto">
+        <div className="lg:container flex items-center mx-auto">
             <section className="flex-1">
                 <div className="p-3">
                     <Link to="/" className="font-bold flex items-center space-x-4">

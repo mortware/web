@@ -44,7 +44,7 @@ export default() => {
     ))
 
     let education = Data.education.map((item, i) => (
-        <div className="mb-2 flex flex-no-wrap space-x-1 sm:flex-col sm:space-x-0 print:flex-col print:space-x-0">
+        <div className="mb-2 flex flex-no-wrap space-x-1 md:flex-col md:space-x-0 print:flex-col print:space-x-0">
             <div className="font-bold whitespace-no-wrap truncate">{item.name}</div>
             <div className="font-light whitespace-no-wrap truncate text-sm print:text-xs">{item.provider}</div>
             <div className="font-light whitespace-no-wrap truncate text-sm print:text-xs">{item.completed}</div>
@@ -63,7 +63,7 @@ export default() => {
             <ResumeHeader/> 
 
             <section className="p-4 md:p-12 print:p-0 print:pt-2">
-                <section className="mb-4 sm:mb-12">
+                <section className="mb-4 md:mb-12">
                     <h2 className="resume-section-title font-bold pb-3 mb-3 uppercase text-xl print:pb-1 print:mb-1">Career Summary</h2>
                     <p className="mb-0">
                         {Data.summary.map((line) => (
@@ -72,25 +72,25 @@ export default() => {
                     </p>
                 </section>
 
-                <div className="mb-4 flex flex-col-reverse sm:flex-row sm:space-x-8 print:flex-row print:space-x-8">
+                <div className="mb-4 flex flex-col-reverse md:flex-row md:space-x-8 print:flex-row print:space-x-8">
 
-                    <div className="w-auto sm:w-3/4 print:w-3/4">
+                    <div className="w-auto md:w-3/4 print:w-3/4">
                         <h2 className="resume-section-title font-bold pb-3 mb-6 uppercase text-xl print:pb-1 print:mb-1">Work Experience</h2>
                         <section className="resume-timeline pl-8">
                             {historyItems}
                         </section>
                     </div>
 
-                    <div className="w-auto sm:w-1/4 print:w-1/4">
+                    <div className="w-auto md:w-1/4 print:w-1/4">
 
                         {/* Skills */}
-                        <div className="mb-4 sm:mb-12" style={{ pageBreakAfter: 'always' }}>
+                        <div className="mb-4 md:mb-12" style={{ pageBreakAfter: 'always' }}>
                             <h2 className="resume-section-title font-bold pb-3 mb-6 uppercase text-xl print:pb-1 print:mb-1">Skills & Tools</h2>
                             <Skills />
                         </div>
 
                         {/* Education */}
-                        <div className="mb-4 sm:mb-12">
+                        <div className="mb-4 md:mb-12">
                             <h2 className="resume-section-title font-bold pb-3 mb-6 uppercase text-xl print:pb-1 print:mb-1">Education</h2>
                             <ul>
                                 {education}
@@ -98,7 +98,7 @@ export default() => {
                         </div>
 
                         {/* Interests */}
-                        <div className="mb-4 sm:mb-12">
+                        <div className="mb-4 md:mb-12">
                             <h2 className="resume-section-title font-bold pb-3 mb-6 uppercase text-xl print:pb-1 print:mb-1">Interests</h2>
                             <ul>
                                 {interests}

@@ -23,4 +23,3 @@ stages:
           repository: 'mortware/web'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
-          tags: 'latest'

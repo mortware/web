@@ -27,7 +27,7 @@ export default () => {
 
     }
     return (
-        <section className="grid grid-cols-2 gap-4 md:grid-cols-1 print:grid-cols-1">
+        <section className="grid grid-cols-2 gap-4 md:grid-cols-1 print:grid-cols-1 print:gap-0">
             {skillSections}
             <div className="resume-skill-item col-span-2 md:col-auto print:col-auto">
                 <h4 className="font-bold mb-2">Other</h4>

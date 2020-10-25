@@ -147,6 +147,9 @@ export const skills = {
             skills: [{
                 name: "JavaScript",
                 progress: 1
+            },{
+                name: "TypeScript",
+                progress: 0.95
             },
             {
                 name: "HTML/CSS/SASS/LESS",
@@ -180,7 +183,7 @@ export const skills = {
             },{
                 name: "Entity Framework / EF Core",
                 progress: 0.95
-            },, {
+            },{
                 name: "Microsoft SQL",
                 progress: 0.95
             }, {
@@ -189,7 +192,7 @@ export const skills = {
             }]
         }
     ],
-    other: ["Azure DevOps", "Docker", "BDD", "TDD", "Automated Testing", "Git", "Unit Testing", "Node.js", "Agile SCRUM", "Sketch", "Jira", "TeamCity", "Octopus"]
+    other: ["Azure DevOps", "CI/CD", "Docker", "BDD", "TDD", "Git", "Unit Testing", "Node.js", "Agile SCRUM", "Sketch", "Jira", "TeamCity", "Octopus"]
 }
 
 export const interests = [

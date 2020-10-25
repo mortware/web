@@ -7,9 +7,10 @@ const Header = () => (
         <div className="container flex items-center mx-auto">
             <section className="flex-1">
                 <div className="p-3">
-                    <Link to="/" className="font-bold">
-                        mortware
-                </Link>
+                    <Link to="/" className="font-bold flex items-center space-x-4">
+                        {/* <img src="logo.svg" className="h-4"></img> */}
+                        &lt;mortware/&gt;
+                    </Link>
                 </div>
             </section>
             <nav className="">

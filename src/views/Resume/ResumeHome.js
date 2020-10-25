@@ -12,8 +12,8 @@ export default() => {
 
             <header className="mb-1 md:mb-2">
                 <div className="flex justify-between ">
-                    <h3 className="font-bold">{item.title}</h3>
-                    <div className="text-sm font-medium">{item.employer}</div>
+                    <h3 className="font-bold whitespace-no-wrap truncate">{item.title}</h3>
+                    <div className="text-sm font-medium whitespace-no-wrap truncate">{item.employer}</div>
                 </div>
                 <div className="text-sm text-gray-500">{item.from} - {item.to}</div>
             </header>
@@ -24,7 +24,7 @@ export default() => {
 
             <div className="mb-4">
                 <h4 className="font-bold mb-1">Achievements:</h4>
-                <ul className="list-disc list-outside pl-5 print:text-sm">
+                <ul className="list-disc list-outside pl-0 print:text-sm">
                     {item.keyNotes.map((note) =>
                         <li className="ml-5">
                             {note}
@@ -44,10 +44,10 @@ export default() => {
     ))
 
     let education = Data.education.map((item, i) => (
-        <div className="mb-2 flex space-x-1 sm:flex-col sm:space-x-0 print:flex-col print:space-x-0">
-            <div className="font-bold">{item.name}</div>
-            <div className="font-light text-sm print:text-xs">{item.provider}</div>
-            <div className="font-light text-sm print:text-xs">{item.completed}</div>
+        <div className="mb-2 flex flex-no-wrap space-x-1 sm:flex-col sm:space-x-0 print:flex-col print:space-x-0">
+            <div className="font-bold whitespace-no-wrap truncate">{item.name}</div>
+            <div className="font-light whitespace-no-wrap truncate text-sm print:text-xs">{item.provider}</div>
+            <div className="font-light whitespace-no-wrap truncate text-sm print:text-xs">{item.completed}</div>
         </div>
     ))
 

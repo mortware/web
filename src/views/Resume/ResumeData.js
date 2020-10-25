@@ -1,14 +1,17 @@
 export const details = {
     name: "David J. Price",
-    title: "Senior Software Engineer",
-    phone: "+44 (0)7711 228 988",
-    email: "david@mortware.net"
+    title: "Senior Software Engineer"
 }
 
 export const summary = [
     "Passionate senior full-stack software engineer with 15+ years of experience. Designing and delivering innovative cloud-based web applications and systems using the latest .NET and JavaScript technologies based on SOLID principles.  Producing or enhancing lasting systems; specifically with web and cloud-based technologies.",
     "Flexible and amiable with an ability to quickly adapt to varied working environments.  Open, self-aware and empathetic with a strong ability to win trust and respect at all levels."
 ]
+
+export const contact = {
+    phone: "+44 (0)7711 228 988",
+    email: "david@mortware.net"
+}
 
 export const links = [
     {
@@ -21,7 +24,7 @@ export const links = [
         icon: ['fab', 'github-square'],
         iconSource: '@fortawesome/free-brands-svg-icons',
         display: 'github.com/mortware',
-        url: 'https://github.com/mortware.net'
+        url: 'https://github.com/mortware'
     },
     {
         icon: ['fas', 'globe'],

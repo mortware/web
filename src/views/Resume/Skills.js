@@ -11,7 +11,7 @@ export default () => {
                 <ul className="list-unstyled mb-4">
                     {section.skills.map((skill, i) =>
                         <li className="mb-2" key={i}>
-                            <div className="resume-skill-name">{skill.name}</div>
+                            <div className="resume-skill-name whitespace-no-wrap truncate">{skill.name}</div>
                             <div className="progress resume-progress">
                                 <div className="progress-bar" style={{ width: skill.progress * 100 + "%" }}></div>
                             </div>

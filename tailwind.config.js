@@ -10,6 +10,9 @@ module.exports = {
             },
             screens: {
                 'print': { 'raw': 'print' }
+            },
+            height: {
+                '1/2': '50%'
             }
         },
     },

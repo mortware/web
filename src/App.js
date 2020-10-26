@@ -18,7 +18,7 @@ library.add(
 export default () => {
   return (
     <div className="relative pb-10 min-h-screen">
-        <Router>
+        <Router basename="/">
 
           <Header />
 

@@ -4,7 +4,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useTransition, animated } from 'react-spring';
 import { Link } from 'react-router-dom';
 
-const Menu = () => {
+const Menu = (props) => {
     const [showMenu, setShowMenu] = useState(false)
 
     const maskTransitions = useTransition(showMenu, null, {
@@ -20,7 +20,7 @@ const Menu = () => {
     })
 
     return (
-        <nav>
+        <nav className={props.className}>
             <button className="text-xl px-2">
                 <FontAwesomeIcon
                     icon={faBars}

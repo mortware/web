@@ -6,7 +6,7 @@ export default () => {
 
     let links = Data.links.map((link, i) =>
         <li className="mb-1 md:mb-3" key={i}>
-            <a href={link.url} className="text-gray-600 md:text-gray-500 text-sm md:text-base whitespace-no-wrap truncate" target="_blank">
+            <a href={link.url} className="text-gray-600 md:text-gray-500 text-sm md:text-base whitespace-no-wrap truncate" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={link.icon} fixedWidth size="lg" className="mr-1 md:mr-2" />
                 <span className="inline-block print:inline-block">{link.display}</span>
             </a>
@@ -35,13 +35,13 @@ export default () => {
                         {/* Contact Details */}
                         <ul>
                             <li className="text-xs md:text-base">
-                                <a href={"mailto:" + Data.contact.email} className="text-gray-600 md:text-gray-500 text-sm md:text-base" target="_blank">
+                                <a href={"mailto:" + Data.contact.email} className="text-gray-600 md:text-gray-500 text-sm md:text-base" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon icon={['fas', 'envelope']} fixedWidth className="mr-1 md:mr-2" />
                                     {Data.contact.email}
                                 </a>
                             </li>
                             <li className="text-xs md:text-base">
-                                <a href={"tel:" + Data.contact.phone} className="text-gray-600 md:text-gray-500 text-sm md:text-base" target="_blank">
+                                <a href={"tel:" + Data.contact.phone} className="text-gray-600 md:text-gray-500 text-sm md:text-base" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon icon={['fas', 'mobile-alt']} fixedWidth className="mr-1 md:mr-2" />
                                     {Data.contact.phone}
                                 </a>

@@ -2,7 +2,6 @@ import React from 'react';
 import Skills from './Skills';
 import ResumeHeader from './ResumeHeader';
 import * as Data from './ResumeData';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Resume.scss';
 
 export default() => {

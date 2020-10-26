@@ -2,6 +2,7 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mortware.github.io/web",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
@@ -14,6 +15,8 @@
     "react-spring": "^8.0.27"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build:tailwind": "tailwind build src/tailwind.css -o src/tailwind.output.css",
     "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/tailwind.output.css -c 'npm run build:tailwind'",
     "start": "npm-run-all build:tailwind --parallel watch:tailwind start:react",
@@ -40,6 +43,7 @@
   },
   "devDependencies": {
     "chokidar-cli": "^2.1.0",
+    "gh-pages": "^3.1.0",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
     "tailwindcss": "^1.9.5"

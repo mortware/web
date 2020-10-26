@@ -1,5 +1,5 @@
 ## Description
-This project is the source code for [mortware.net](https://mortware.net) and is currently deployed to [netlify](https://netflify.com).
+This project is the source code for [mortware.net](https://mortware.net) and is currently deployed to [netlify](https://netlify.com).
 
 It is primarily `react` using `tailwindcss` for styling.
 

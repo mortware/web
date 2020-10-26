@@ -1,3 +1,7 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/452d55c1-ffd3-4c0f-bc87-b4c2c7658b79/deploy-status)](https://app.netlify.com/sites/mortware/deploys)
+
+![Website](https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Fmortware.net)
+
 ## Description
 This project is the source code for [mortware.net](https://mortware.net) and is currently deployed to [netlify](https://netlify.com).
 

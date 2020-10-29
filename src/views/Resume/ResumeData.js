@@ -1,17 +1,13 @@
 export const details = {
     name: "David J. Price",
-    title: "Senior Software Engineer"
+    title: "Full Stack Developer"
 }
 
 export const summary = [
-    "Passionate senior full-stack software engineer with 15+ years of experience. Designing and delivering innovative cloud-based web applications and systems using the latest .NET and JavaScript technologies based on SOLID principles.  Producing or enhancing lasting systems; specifically with web and cloud-based technologies.",
-    "Flexible and amiable with an ability to quickly adapt to varied working environments.  Open, self-aware and empathetic with a strong ability to win trust and respect at all levels."
+    "Passionate full stack developer with experience in designing and delivering innovative cloud-based web applications and systems using the latest .NET and JavaScript technologies.  Producing or enhancing lasting systems; specifically with web and cloud-based technologies.",
+    "Equally proficient in front and back-end technologies, with a high-degree of focus on delivering maintainable code based on SOLID principles.",
+    "Flexible, amiable and able to quickly adapt to varied working environments.  Open, self-aware and empathetic with a strong ability to win trust and respect at all levels."
 ]
-
-export const contact = {
-    phone: "+44 (0)7711 228 988",
-    email: "david@mortware.net"
-}
 
 export const links = [
     {
@@ -32,20 +28,33 @@ export const links = [
         display: 'mortware.net',
         url: 'http://mortware.net'
     },
+    {
+        icon: ['fas', 'envelope'],
+        iconSource: '@fortawesome/free-solid-svg-icons',
+        display: 'david@mortware.net',
+        url: 'mailto:david@mortware.net'
+    },
+    {
+        icon: ['fas', 'mobile-alt'],
+        iconSource: '@fortawesome/free-solid-svg-icons',
+        display: '+44 (0)7711 228 988',
+        url: 'tel:+447711228988"'
+    }
 ]
 
 export const workHistory = [
     {
-        title: "Managing Senior Developer",
+        title: "Lead Developer",
         employer: "StepStone",
         from: "2020",
         to: "Present",
-        description: "Leading a team of engineers during a platform harmonisation project",
+        description: "Leading a team of engineers during a platform harmonisation project.",
         keyNotes: [
-            "Consolidation of existing authentication providers into decoupled Identity service.",
+            "Introduced a robust microservices architecture that was used across multiple teams.",
+            "Led the consolidation of existing authentication providers into singular decoupled OAuth service; significantly improving security, reaction time and development costs.",
             "Mentoring junior and mid-level developers."
         ],
-        keyTech: [
+        tags: [
             "ASP.NET Core", "React", "AWS", "SQS/SNS", "Lambda", "Git", "TeamCity", "OctoDeploy"
         ]
     }, {
@@ -55,38 +64,40 @@ export const workHistory = [
         to: "2020",
         description: "Leading a team of in-house and remote engineers/testers in the design and implementation of a new customer portal for pet insurance policy and claims management.",
         keyNotes: [
-            "Implementation of a new pricing engine for handling quotes and mid-term adjustments.",
-            "Mentoring junior and mid-level developers."
+            "Creation of a new self-service customer portal for managing insurance policies and submitting claims. This had a direct impact on reducing call-centre costs for the business.",
+            "Implemented new pricing engine that helped the system respond to reguarly changing business requirements. Quotations and mid-term adjustments were able to reflect new prices instantly.",
+            "Implemented mentoring program for junior and mid-level developers."
         ],
-        keyTech: [
+        tags: [
             "ASP.NET Core", "AngularJS", "Angular", "Azure", "SVN", "TeamCity", "OctoDeploy"
         ]
     }, {
-        title: "Senior Software Developer",
+        title: "Senior Developer",
         employer: "Zoopla",
         from: "2015",
         to: "2018",
         description: "Migration and feature development for existing residential/lettings cloud-based application.",
         keyNotes: [
-            "Separation of monolith application into a microservice-based/SOA architecture, integrating with external services (Office 365, Google, AWS and own bespoke services).",
-            "Introduction and integration of Angular for new and legacy features (alongside MVC/Razor).",
+            "Separation of monolith application into a microservice-based/SOA architecture allowed the business to scale their flagship application.",
+            "Introduction of SPA (Angular) for new and legacy features, allowing the business to use a responsive and device-friendly design.",
             "Integration of sister-company’s price comparison system using RESTful APIs and SPA techniques, significantly reducing time to market.",
             "Implementation of GDPR-based features for customers to be compliant before deadline."
         ],
-        keyTech: [
+        tags: [
             "ASP.NET", "AngularJS", "SignalR", "SQL Server", "Redis", "MongoDB", "TeamCity"
         ]
     }, {
-        title: "Senior Software Developer",
+        title: "Senior Developer",
         employer: "Red River Software",
         from: "2011",
         to: "2015",
         description: "Bespoke software development for high-growth businesses, start-ups, investors, and organisations undergoing rapid change and digital transformation.",
         keyNotes: [
-            "Design and development of robust single-page web applications with supporting back-end. Utilising Angular, Bootstrap and many well known JavaScript libraries, our applications were driven by modern design, a strong focus on quality UI design and a well thought out user experience was essential.",
-            "Role varied from technical lead and software architect to UX and product designer.",
+            "Design and development of robust single-page web applications with supporting back-end.",
+            "Utilising Angular, Bootstrap and many well known JavaScript libraries, applications were driven by modern design, a strong focus on quality UI and well thought out UX was essential.",
+            "Role varied from technical lead and software architect to UX and product design.",
         ],
-        keyTech: [
+        tags: [
             "ASP.NET", "AngularJS", "KnockoutJS", "SQL Server", "SQL Azure", "WPF"
         ]
     }, {
@@ -96,15 +107,13 @@ export const workHistory = [
         to: "2011",
         description: "GIS visualisation for local authority and private business",
         keyNotes: [
-            "Designed and developed a Windows GIS application. An off-the-shelf product for a broad market that allowed users to visually represent and publish geographical data.",
-            "Designed and developed an interactive digital signage display for use in estate agents.",
-
+            "Lead the design and development of a Windows-based GIS application. An off-the-shelf product for a broad market that allowed users to visually represent and publish geographical data.",
+            "Developed an interactive digital signage display for use in estate agents. A side project that allowed the business to branch into other markets.",
         ],
-        keyTech: [
+        tags: [
             "WPF", "Silverlight", "WinForms", "SQL Server", "PostGIS", "ASP.NET"
         ]
     }
-
 ]
 
 export const education = [
@@ -139,64 +148,13 @@ export const education = [
     }
 ]
 
-export const skills = {
-
-    sections: [
-        {
-            name: "Frontend",
-            skills: [{
-                name: "JavaScript",
-                progress: 1
-            },{
-                name: "TypeScript",
-                progress: 0.95
-            },
-            {
-                name: "HTML/CSS/SASS/LESS",
-                progress: 1
-            }, {
-                name: "AngularJS",
-                progress: 0.95
-            },
-            {
-                name: "Angular 2x",
-                progress: 0.95
-            },
-            {
-                name: "React",
-                progress: 0.8
-            }]
-        }, {
-            name: "Backend",
-            skills: [{
-                name: ".NET Core / ASP.NET Core",
-                progress: 1
-            }, {
-                name: ".NET Framework",
-                progress: 1
-            }, {
-                name: "Azure",
-                progress: 0.9
-            },{
-                name: "AWS",
-                progress: 0.8
-            },{
-                name: "Entity Framework / EF Core",
-                progress: 0.95
-            },{
-                name: "Microsoft SQL",
-                progress: 0.95
-            }, {
-                name: "Mongo/Dynamo/Cosmos",
-                progress: 0.7
-            }]
-        }
-    ],
-    other: ["Azure DevOps", "CI/CD", "Docker", "BDD", "TDD", "Git", "Unit Testing", "Node.js", "Agile SCRUM", "Sketch", "Jira", "TeamCity", "Octopus"]
-}
-
-export const interests = [
-    "Music Performance",
-    "Cooking",
-    "Gaming"
-]
+export const skills = [{
+    name: "Backend",
+    skills: [".NET Core", "ASP.NET Core", ".NET Framework", "Azure", "AWS", "Entity Framework", "EF Core", "Microsoft SQL"]
+}, {
+    name: "Frontend",
+    skills: ["JavaScript", "TypeScript", "CSS/SASS/LESS", "AngularJS", "Angular 2+ (to 9)", "React"]
+}, {
+    name: "Knowledgeable",
+    skills: ["Azure DevOps", "CI/CD", "Docker", "BDD", "TDD", "Git", "Unit Testing", "Node.js", "Agile", "SCRUM", "TeamCity", "Octopus", "Mongo", "Dynamo", "Dapper"]
+}]

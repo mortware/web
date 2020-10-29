@@ -3,111 +3,66 @@ import Skills from './Skills';
 import ResumeHeader from './ResumeHeader';
 import * as Data from './ResumeData';
 import './Resume.scss';
+import EmploymentHistoryItem from './EmploymentHistoryItem';
+import ResumeSection from './ResumeSection';
 
-export default() => {
-
-    let historyItems = Data.workHistory.map((item, i) => (
-        <article className="resume-timeline-item pb-4 md:pb-12 relative">
-
-            <header className="mb-1 md:mb-2">
-                <div className="flex justify-between ">
-                    <h3 className="font-bold whitespace-no-wrap truncate">{item.title}</h3>
-                    <div className="text-sm font-medium whitespace-no-wrap truncate">{item.employer}</div>
-                </div>
-                <div className="text-sm text-gray-500">{item.from} - {item.to}</div>
-            </header>
-
-            <p className="mb-1 md:mb-4">
-                {item.description}
-            </p>
-
-            <div className="mb-4">
-                <h4 className="font-bold mb-1">Achievements:</h4>
-                <ul className="list-disc list-outside pl-0 print:text-sm">
-                    {item.keyNotes.map((note) =>
-                        <li className="ml-5">
-                            {note}
-                        </li>
-                    )}
-                </ul>
-            </div>
-            <div>
-                <h4 className="font-bold mb-1">Technologies used:</h4>
-                <div className="flex flex-wrap">
-                    {item.keyTech.map((tech) => (
-                        <span className="badge mr-1 mb-2">{tech}</span>
-                    ))}
-                </div>
-            </div>
-        </article>
-    ))
-
-    let education = Data.education.map((item, i) => (
-        <div className="mb-2 flex flex-no-wrap space-x-1 md:flex-col md:space-x-0 print:flex-col print:space-x-0">
-            <div className="font-bold whitespace-no-wrap truncate">{item.name}</div>
-            <div className="font-light whitespace-no-wrap truncate text-sm print:text-xs">{item.provider}</div>
-            <div className="font-light whitespace-no-wrap truncate text-sm print:text-xs">{item.completed}</div>
-        </div>
-    ))
-
-    let interests = Data.interests.map((item, i) => (
-        <li className="mb-2">
-            <div className="">{item}</div>
-        </li>
-    ))
+export default () => {
 
     return (
         <article className="resume mx-auto text-left bg-white md:shadow-lg md:max-w-5xl text-sm md:text-base">
 
-            <ResumeHeader/> 
+            <ResumeHeader />
 
             <section className="p-4 md:p-12 print:p-0 print:pt-2">
-                <section className="mb-4 md:mb-12">
-                    <h2 className="resume-section-title font-bold pb-3 mb-3 uppercase text-xl print:pb-1 print:mb-1">Career Summary</h2>
+
+                <ResumeSection title="Career Summary">
                     <p className="mb-0">
                         {Data.summary.map((line) => (
                             <p className="mb-2">{line}</p>
                         ))}
                     </p>
-                </section>
+                </ResumeSection>
 
-                <div className="mb-4 flex flex-col-reverse md:flex-row md:space-x-8 print:flex-row print:space-x-8">
+                <ResumeSection title="Skills & Tools">
+                    {Data.skills.map(category =>
+                        <p>
+                            <strong>{category.name}: </strong>
+                            {category.skills.sort((a, b) => a > b ? 1 : -1).join(", ")}
+                        </p>
+                    )}
+                </ResumeSection>
 
-                    <div className="w-auto md:w-3/4 print:w-3/4">
-                        <h2 className="resume-section-title font-bold pb-3 mb-6 uppercase text-xl print:pb-1 print:mb-1">Work Experience</h2>
-                        <section className="resume-timeline pl-8">
-                            {historyItems}
-                        </section>
+                <ResumeSection title="Work Experience">
+                    <div className="resume-timeline pl-8">
+                        {Data.workHistory
+                            .sort((a, b) => a.to < b.to ? 1 : -1)
+                            .slice(0, 5)
+                            .map((item, i) =>
+                                <EmploymentHistoryItem
+                                    key={i}
+                                    title={item.title}
+                                    employer={item.employer}
+                                    description={item.description}
+                                    from={item.from}
+                                    to={item.to}
+                                    notes={item.keyNotes}
+                                    tags={item.tags}
+                                />
+                            )}
                     </div>
+                </ResumeSection>
 
-                    <div className="w-auto md:w-1/4 print:w-1/4">
-
-                        {/* Skills */}
-                        <div className="mb-4 md:mb-12" style={{ pageBreakAfter: 'always' }}>
-                            <h2 className="resume-section-title font-bold pb-3 mb-6 uppercase text-xl print:pb-1 print:mb-1">Skills & Tools</h2>
-                            <Skills />
-                        </div>
-
-                        {/* Education */}
-                        <div className="mb-4 md:mb-12">
-                            <h2 className="resume-section-title font-bold pb-3 mb-6 uppercase text-xl print:pb-1 print:mb-1">Education</h2>
-                            <ul>
-                                {education}
-                            </ul>
-                        </div>
-
-                        {/* Interests */}
-                        <div className="mb-4 md:mb-12">
-                            <h2 className="resume-section-title font-bold pb-3 mb-6 uppercase text-xl print:pb-1 print:mb-1">Interests</h2>
-                            <ul>
-                                {interests}
-                            </ul>
-                        </div>
-
+                <ResumeSection title="Education">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                        {Data.education.map((item, i) =>
+                            <div key={i} className="mb-2 flex flex-no-wrap space-x-1 md:flex-col md:space-x-0 print:flex-col print:space-x-0">
+                                <div className="font-bold whitespace-no-wrap truncate">{item.name}</div>
+                                <div className="font-light whitespace-no-wrap truncate text-sm print:text-xs">{item.provider}</div>
+                                <div className="font-light whitespace-no-wrap truncate text-sm print:text-xs">{item.completed}</div>
+                            </div>
+                        )}
                     </div>
-
-
-                </div>
+                </ResumeSection>
 
             </section>
         </article >

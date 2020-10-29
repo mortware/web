@@ -1,0 +1,21 @@
+.tag {
+    color         : #fff;
+    padding-right : 0.6em;
+    padding-left  : 0.6em;
+    border-radius : 10rem;
+    font-size     : 75%;
+    font-weight   : 700;
+    white-space   : nowrap;
+    vertical-align: baseline;
+    box-shadow    : inset 0 0 0 1000px #58677c;
+    -webkit-print-color-adjust: exact;
+    -webkit-filter: opacity(1);
+
+    &.tag-light {
+        font-weight: 500;
+        color      : #222;
+        box-shadow : inset 0 0 0 1000px #eee;
+        -webkit-print-color-adjust: exact;
+        -webkit-filter: opacity(1);
+    }
+}

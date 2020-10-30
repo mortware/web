@@ -18,20 +18,18 @@ library.add(
 export default () => {
   return (
     <div className="relative pb-10 min-h-screen">
-        <Router>
+      <Router>
 
-          <Header />
+        <Header />
+        <div>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/resume" component={Resume} />
+          </Switch>
+        </div>
+        <Footer />
 
-          <div className="md:p-3 md:container mx-auto">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/resume" component={Resume} />
-            </Switch>
-          </div>
-
-          <Footer />
-
-        </Router>
-      </div>
+      </Router>
+    </div>
   );
 }

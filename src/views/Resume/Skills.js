@@ -1,6 +1,5 @@
 import React from 'react';
 import * as Data from './ResumeData';
-import Tags from '../../components/Tags';
 
 export default () => {
     let skillSections = null;

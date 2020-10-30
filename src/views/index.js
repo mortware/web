@@ -1,4 +1,5 @@
 import Home from './Home';
-import Resume from './Resume/ResumeHome';
+import Resume from './Resume';
+import Projects from './Projects';
 
-export { Home, Resume }
+export { Home, Resume, Projects }

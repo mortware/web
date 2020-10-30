@@ -1,5 +1,5 @@
 import React from 'react';
-import './Resume.scss';
+import './Styles.scss';
 
 export default ({ title, children }) => {
 

@@ -3,8 +3,8 @@ import { Home, Resume } from './views';
 import { Header, Footer } from './components/App';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faLinkedin, faGithubSquare } from '@fortawesome/free-brands-svg-icons';
-import { faGlobe, faMobileAlt, faEnvelope, faCode } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin, faGithubSquare, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faGlobe, faMobileAlt, faEnvelope, faCode, faPlay } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faLinkedin,
@@ -12,7 +12,9 @@ library.add(
   faCode,
   faEnvelope,
   faMobileAlt,
-  faGlobe
+  faGlobe,
+  faPlay,
+  faGithub
 )
 
 export default () => {

@@ -2,6 +2,8 @@ import React from 'react';
 import ResumeHeader from './ResumeHeader';
 import * as Data from './ResumeData';
 import Tags from '../../components/Tags';
+import Moment from 'moment';
+
 import './Styles.scss';
 
 const History = ({ key, title, employer, description, from, to, notes, tags }) => {
@@ -77,20 +79,39 @@ const Resume = () => {
                 <Section title="Work Experience">
                     <div className="resume-timeline pl-8">
                         {Data.workHistory
-                            .sort((a, b) => a.to < b.to ? 1 : -1)
+                            .sort((a, b) => a.from < b.from ? 1 : -1)
                             .slice(0, 5)
-                            .map((item, i) =>
-                                <History
+                            .map((item, i) => {
+                                let fromDate = Moment(item.from).format('YYYY');
+                                let toDate = !item.to ? "Present" : Moment(item.to).format('YYYY');
+                                return <History
                                     key={i}
                                     title={item.title}
                                     employer={item.employer}
                                     description={item.description}
-                                    from={item.from}
-                                    to={item.to}
+                                    from={fromDate}
+                                    to={toDate}
                                     notes={item.keyNotes}
                                     tags={item.tags}
                                 />
-                            )}
+                            })}
+                        {Data.workHistory
+                            .sort((a, b) => a.from < b.from ? 1 : -1)
+                            .slice(5)
+                            .map((item, i) => {
+                                let fromDate = Moment(item.from).format('YYYY');
+                                let toDate = !item.to ? "Present" : Moment(item.to).format('YYYY');
+                                return <History
+                                    key={i}
+                                    title={item.title}
+                                    employer={item.employer}
+                                    description={item.description}
+                                    from={fromDate}
+                                    to={toDate}
+                                    notes={[]}
+                                    tags={item.tags}
+                                />
+                            })}
                     </div>
                 </Section>
 

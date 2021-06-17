@@ -2,7 +2,7 @@ import React from 'react';
 import * as Data from './ResumeData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default () => {
+function ResumeHeader() {
 
     let links = Data.links.map((link, i) =>
         <li className="mb-1 md:mb-2 print:mb-1" key={i}>
@@ -45,3 +45,5 @@ export default () => {
         </header>
     )
 }
+
+export default ResumeHeader;

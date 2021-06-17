@@ -17,7 +17,7 @@ library.add(
   faGithub
 )
 
-export default () => {
+function App() {
   return (
     <div className="relative pb-10 min-h-screen">
       <Router>
@@ -35,3 +35,5 @@ export default () => {
     </div>
   );
 }
+
+export default App;

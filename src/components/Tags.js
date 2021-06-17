@@ -1,7 +1,7 @@
 import React from 'react';
 import './Tags.scss';
 
-export default ({ tags = [], theme = "dark" }) => {
+function Tags({ tags = [], theme = "dark" }) {
     return (
         <div className="flex flex-wrap">
             {tags.map((item, i) =>
@@ -10,3 +10,5 @@ export default ({ tags = [], theme = "dark" }) => {
         </div>
     )
 }
+
+export default Tags;

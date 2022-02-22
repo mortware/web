@@ -47,10 +47,10 @@ export const workHistory = [
     title: "Principal Developer",
     employer: "NHS Property Services",
     from: "2021-02-01",
-    description: "Providing architectural support for application development",
+    description: "Leading full-stack development across multiple teams",
     keyNotes: [
-      "Design and development of a portal application for surfacing key business functions to customers",
-      "Governance of application development by 3rd-party ensuring the best value of delivery",
+      "Design and development of a portal application for surfacing key business functions to key NHS areas",
+      "Governance of application and service development by internal and 3rd-party teams",
       "Implementation of robust CI/CD pipeline using Azure DevOps significantly reducing delivery times",
     ],
     tags: [

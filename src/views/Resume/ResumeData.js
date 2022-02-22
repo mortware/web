@@ -44,7 +44,7 @@ export const links = [
 
 export const workHistory = [
   {
-    title: "Principle Developer",
+    title: "Principal Developer",
     employer: "NHS Property Services",
     from: "2021-02-01",
     description: "Providing architectural support for application development",

@@ -1,10 +1,10 @@
 export const details = {
   name: "David J. Price",
-  title: "Full Stack Developer",
+  title: "Principal Developer",
 };
 
 export const summary = [
-  "Passionate full stack developer with experience in designing and delivering innovative cloud-based web applications and systems using the latest .NET and JavaScript technologies.  Producing or enhancing lasting systems; specifically with web and cloud-based technologies.",
+  "Passionate principal engineer and developer advocate with experience in designing and delivering innovative cloud-based web applications and systems using the latest .NET and JavaScript technologies.  Producing or enhancing lasting systems; specifically with web and cloud-based technologies.",
   "Equally proficient in front and back-end technologies, with a high-degree of focus on delivering maintainable code based on SOLID principles.",
   "Flexible, amiable and able to quickly adapt to varied working environments.  Open, self-aware and empathetic with a strong ability to win trust and respect at all levels.",
 ];
@@ -54,8 +54,8 @@ export const workHistory = [
       "Implementation of robust CI/CD pipeline using Azure DevOps significantly reducing delivery times",
     ],
     tags: [
-      "ASP.NET 5/6",
-      "Angular 12/13",
+      "ASP.NET 6",
+      "Angular 13",
       "Azure",
       "Azure DevOps",
       "YAML",
@@ -246,7 +246,7 @@ export const skills = [
       "TypeScript",
       "CSS/SASS/LESS",
       "AngularJS",
-      "Angular 2+ (to 12)",
+      "Angular 2+ (to 13)",
       "React",
     ],
   },
@@ -257,6 +257,7 @@ export const skills = [
       "CI/CD",
       "TeamCity",
       "Octopus",
+      "Git",
       "YAML Pipelines",
       "SonarCloud",
     ],
@@ -267,7 +268,6 @@ export const skills = [
       "Docker",
       "BDD",
       "TDD",
-      "Git",
       "Unit Testing",
       "Node.js",
       "Agile",

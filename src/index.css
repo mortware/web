@@ -1,0 +1,129 @@
+html {
+  font-family: "Roboto", Helvetica, sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  -webkit-print-color-adjust: exact !important;
+  overflow-x: hidden;
+  margin: 0;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+  background: #f7f8fa;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #434e5e;
+  font-size: 14pt;
+  font-weight: 300;
+  line-height: 1.75em;
+}
+
+p {
+  color: #58677c;
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #3498db;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.resume-section > h2 {
+  position: relative;
+}
+.resume-section > h2:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.5px !important;
+  border-bottom: 1px solid #8d9aad;
+}
+
+.resume-timeline {
+  position: relative;
+}
+
+.resume-timeline:before {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 100%;
+  border: 1px solid #aab4c3;
+  left: 6px;
+  top: 4px;
+  position: absolute;
+}
+
+.resume-timeline:last-child {
+  margin-bottom: 0;
+}
+
+.resume-timeline-item {
+  display: block;
+  page-break-inside: avoid;
+}
+
+.resume-timeline-item:before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: -32px;
+  top: 3px;
+  width: 15px;
+  height: 15px;
+  border: 4px solid #58677c !important;
+  background: white;
+  border-radius: 50%;
+}
+
+.progress {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+  line-height: 0;
+  box-shadow: inset 0 0 0 1000px #e9ecef;
+}
+
+.progress .progress-bar {
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: inset 0 0 0 1000px #434e5e;
+  height: 6px;
+  transition: width 0.6s ease;
+}

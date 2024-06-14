@@ -1,28 +1,30 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/452d55c1-ffd3-4c0f-bc87-b4c2c7658b79/deploy-status)](https://app.netlify.com/sites/mortware/deploys)
+# React + TypeScript + Vite
 
-![Website](https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Fmortware.net)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Description
-This project is the source code for [mortware.net](https://mortware.net) and is currently deployed to [netlify](https://netlify.com).
+Currently, two official plugins are available:
 
-It is primarily `react` using `tailwindcss` for styling.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Current configuration means any changes pushed to the 'main' branch will kick off a netlify build and deploy, and be visible within a few seconds. Awesome.
+## Expanding the ESLint configuration
 
-As this project makes use of `react-router-dom` and due to the nature of hosting via netlify's CDN, it is necessary to include a `_redirects` file in the `public` folder. This ensures that any failed requests will redirect to the `index.html`, which will then handle the request via the router.
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-## Available Scripts
+- Configure the top-level `parserOptions` property like this:
 
-In the project directory, you can run:
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
+```
 
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

@@ -1,52 +1,39 @@
 {
-  "name": "web",
-  "version": "0.1.0",
+  "name": "web2",
   "private": true,
-  "homepage": "https://mortware.net/",
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-brands-svg-icons": "^5.15.1",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/react-fontawesome": "^0.1.11",
-    "moment": "^2.29.1",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
-    "react-spring": "^8.0.27"
-  },
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "build:tailwind": "tailwind build src/tailwind.css -o src/tailwind.output.css",
-    "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/tailwind.output.css -c 'npm run build:tailwind'",
-    "start": "npm-run-all build:tailwind --parallel watch:tailwind start:react",
-    "start:react": "react-scripts start",
-    "prebuild": "npm run build:tailwind",
-    "build": "set CI=true && react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@react-spring/web": "^9.7.3",
+    "class-variance-authority": "^0.7.0",
+    "date-fns": "^3.6.0",
+    "dayjs": "^1.11.10",
+    "lucide-react": "^0.378.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.23.1",
+    "tailwind-merge": "^2.2.2"
   },
   "devDependencies": {
-    "chokidar-cli": "^2.1.0",
-    "gh-pages": "^3.1.0",
-    "node-sass": "^4.14.1",
-    "npm-run-all": "^4.1.5",
-    "tailwindcss": "^1.9.5"
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vite-tsconfig-paths": "^4.3.2"
   }
 }

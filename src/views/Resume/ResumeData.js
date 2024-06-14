@@ -4,9 +4,9 @@ export const details = {
 };
 
 export const summary = [
-  "Passionate principal engineer and developer advocate with experience in designing and delivering innovative cloud-based web applications and systems using the latest .NET and JavaScript technologies.  Producing or enhancing lasting systems; specifically with web and cloud-based technologies.",
-  "Equally proficient in front and back-end technologies, with a high-degree of focus on delivering maintainable code based on SOLID principles.",
-  "Flexible, amiable and able to quickly adapt to varied working environments.  Open, self-aware and empathetic with a strong ability to win trust and respect at all levels.",
+  "A principal engineer and developer advocate with a strong passion for creating innovative cloud-based web applications and systems. Experienced in leveraging the latest .NET and JavaScript technologies to build and enhance robust systems.",
+  "Proficient in both front-end and back-end technologies, with a commitment to writing maintainable code guided by SOLID principles. Known for adaptability and a friendly demeanor, capable of thriving in diverse work environments.",
+  "Valued for an open, self-aware, and empathetic approach that fosters trust and respect at all organizational levels.",
 ];
 
 export const links = [
@@ -47,21 +47,14 @@ export const workHistory = [
     title: "Principal Developer",
     employer: "NHS Property Services",
     from: "2021-02-01",
-    description: "Leading full-stack development across multiple teams",
+    description:
+      "Leading full-stack development across multiple teams to deliver high-quality software solutions",
     keyNotes: [
-      "Design and development of a portal application for surfacing key business functions to key NHS areas",
-      "Governance of application and service development by internal and 3rd-party teams",
-      "Implementation of robust CI/CD pipeline using Azure DevOps significantly reducing delivery times",
+      "Designed and developed a customer portal application for key business functions",
+      "Governed application and service development by internal and 3rd-party teams",
+      "Implemted a robust CI/CD pipeline using Azure DevOps, significantly reducing delivery times",
     ],
-    tags: [
-      "ASP.NET 6",
-      "Angular 13",
-      "Azure",
-      "Azure DevOps",
-      "YAML",
-      "ARM/Bicep",
-      "MSSQL",
-    ],
+    tags: ["ASP.NET 8", "React", "Azure DevOps", "YAML", "Azure", "MSSQL"],
   },
   {
     title: "Software Engineer",
@@ -72,7 +65,7 @@ export const workHistory = [
       "Development of integration APIs for 3rd-party finance systems",
     keyNotes: [
       "Established centre of excellence (CoE) team for wider developer audience",
-      "Introduction of SRE for continued improvement",
+      "Introduced SRE for continued improvement",
       "Integration of Shopify to FreeAgent",
     ],
     tags: ["ASP.NET Core", "Azure", "Azure DevOps"],

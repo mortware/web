@@ -215,7 +215,7 @@ export const Skills: SkillsItem[] = [{
   skills: [
     "JavaScript",
     "TypeScript",
-    "CSS/SASS/LESS",
+    "CSS/SASS/LESS/Tailwind",
     "AngularJS",
     "Angular 2+ (to 13)",
     "React",
@@ -225,11 +225,11 @@ export const Skills: SkillsItem[] = [{
   skills: [
     "Azure DevOps",
     "CI/CD",
+    "Static Code Analysis",
     "TeamCity",
     "Octopus",
     "Git",
     "YAML Pipelines",
-    "SonarCloud",
   ],
 }, {
   name: "Knowledgeable",

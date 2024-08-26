@@ -8,6 +8,8 @@ import {
   Play,
   Printer,
   Phone,
+  LogIn,
+  LogOut
 } from "lucide-react";
 
 export const Icons = {
@@ -19,5 +21,7 @@ export const Icons = {
   linkedin: Linkedin,
   menu: Menu,
   play: Play,
-  printer: Printer
+  printer: Printer,
+  login: LogIn,
+  logout: LogOut
 };

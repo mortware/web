@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.2.4",
+    "@gqty/cli": "^4.2.0",
+    "@gqty/react": "^3.0.4",
+    "@radix-ui/react-popover": "^1.1.1",
     "@react-spring/web": "^9.7.3",
     "class-variance-authority": "^0.7.0",
     "date-fns": "^3.6.0",
@@ -32,7 +36,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5.2.2",
+    "typescript": "^5.5.4",
     "vite": "^5.2.0",
     "vite-tsconfig-paths": "^4.3.2"
   }

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://github.com/Azure/data-api-builder/releases/download/v1.1.7/dab.draft.schema.json",
+  "data-source": {
+    "database-type": "mssql",
+    "connection-string": "Server=tcp:mortware.database.windows.net,1433;Database=mortware;Authentication=Active Directory Default",
+    "options": {
+      "set-session-context": false
+    }
+  },
+  "runtime": {
+    "rest": {
+      "enabled": true,
+      "path": "/rest",
+      "request-body-strict": true
+    },
+    "graphql": {
+      "enabled": true,
+      "path": "/graphql",
+      "allow-introspection": true
+    },
+    "host": {
+      "cors": {
+        "origins": ["http://localhost:3000"],
+        "allow-credentials": false
+      },
+      "authentication": {
+        "provider": "StaticWebApps"
+      },
+      "mode": "production"
+    }
+  },
+  "entities": {
+    "Song": {
+      "source": {
+        "object": "dbo.Songs",
+        "type": "table"
+      },
+      "graphql": {
+        "enabled": true,
+        "type": {
+          "singular": "Song",
+          "plural": "Songs"
+        }
+      },
+      "rest": {
+        "enabled": true
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            {
+              "action": "*"
+            }
+          ]
+        }
+      ]
+    },
+    "Stem": {
+      "source": {
+        "object": "dbo.Stems",
+        "type": "table"
+      },
+      "graphql": {
+        "enabled": true,
+        "type": {
+          "singular": "Stem",
+          "plural": "Stems"
+        }
+      },
+      "rest": {
+        "enabled": true
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            {
+              "action": "*"
+            }
+          ]
+        }
+      ]
+    },
+    "Mix": {
+      "source": {
+        "object": "dbo.Mixes",
+        "type": "table"
+      },
+      "graphql": {
+        "enabled": true,
+        "type": {
+          "singular": "Mix",
+          "plural": "Mixes"
+        }
+      },
+      "rest": {
+        "enabled": true
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            {
+              "action": "*"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

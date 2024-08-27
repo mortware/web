@@ -1,66 +1,58 @@
-// const BASE_URL = "/data-api/rest";
-const BASE_URL = "http://localhost:5000/graphql";
+import axios from "axios";
+
+const baseUrl = 'http://localhost:5000/rest';
 
 export type Song = {
   Id: string;
-  Title: string;
   Artist: string;
-};
-
-export type OrderByInput = {
-  field: string;
-  direction: "ASC" | "DESC";
+  Title: string;
 }
 
-export const getSongs = async (after: string | null, first: number = 100, orderBy: OrderByInput = { field: "Title", direction: "ASC" }) => {
+export async function test(): Promise<any> {
+  const response = await axios.get(`/api/test`);
+  return response.data;
+}
 
-  const query = `
-    query($after: String, $first: Int) {
-      songs(after: ${after ? `"${after}"` : `null`}, first: $first, orderBy: { ${orderBy.field}: ${orderBy.direction} }) {
-        items {
-          Id
-          Title
-          Artist
-        }
-        hasNextPage
-        endCursor
+export async function listSongs(filter?: string): Promise<Song[]> {
+  const response = await axios.get<{ value: Song[] }>(`${baseUrl}/Song`,
+    {
+      params: {
+        $filter: filter ? `contains(Title,'${filter}') or contains(Artist,'${filter}')` : null,
+        $orderby: 'Artist',
       }
     }
-  `;
+  );
 
-  const variables = {
-    after,
-    first,
-  }
-
-  try {
-    const response = await fetch(`${BASE_URL}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query, variables }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const jsonResponse = await response.json();
-
-    if (!jsonResponse.data) {
-      throw new Error("Invalid response");
-    }
-
-    console.debug(response);
-    return jsonResponse.data.songs.items as Song[];
-  }
-  catch (error) {
-    console.error("Error fetching songs:", error);
-    throw error;
-  }
+  return response.data.value;
 }
 
-export const getStems = async () => {
-
+export async function getSongById(id: string) {
+  const response = await fetch(`${baseUrl}/Song/Id/${id}`);
+  return await response.json();
 }
+
+export async function listMixes(songId: string) {
+  const response = await fetch(`${baseUrl}/Mix?$filter=SongId eq ` + songId);
+  return await response.json();
+}
+
+export async function listStems(songId: string) {
+  const response = await fetch(`${baseUrl}/Stem?$filter=SongId eq ` + songId);
+  return await response.json();
+}
+
+// function buildQueryParams(params: IApiParams): string {
+//   const searchParams = new URLSearchParams();
+//   for (const [key, value] of Object.entries(params)) {
+//     if (value !== undefined && value !== null) {
+//       searchParams.append(`$${key}`, value.toString());
+//     }
+//   }
+//   return searchParams.toString();
+// }
+
+// function extractAfterParam(nextLink: string): string | null {
+//   if (!nextLink) return null;
+//   const url = new URL(nextLink);
+//   return url.searchParams.get('$after');
+// }

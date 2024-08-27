@@ -6,6 +6,7 @@ const SongPage = () => {
   return (
     <div>
       <h1>Song Page {id}</h1>
+      <div></div>
     </div>
   );
 };

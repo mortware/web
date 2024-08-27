@@ -6,8 +6,8 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 export default defineConfig({
   server: {
     proxy: {
-      '/data-api/rest': {
-        target: 'http://localhost:4280/data-api',
+      '/api': {
+        target: 'http://localhost:5000',
         changeOrigin: true,
         secure: false,
       }

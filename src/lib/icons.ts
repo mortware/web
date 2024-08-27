@@ -9,7 +9,8 @@ import {
   Printer,
   Phone,
   LogIn,
-  LogOut
+  LogOut,
+  Search
 } from "lucide-react";
 
 export const Icons = {
@@ -23,5 +24,6 @@ export const Icons = {
   play: Play,
   printer: Printer,
   login: LogIn,
-  logout: LogOut
+  logout: LogOut,
+  search: Search,
 };

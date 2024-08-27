@@ -2,7 +2,6 @@ import { DefaultAzureCredential } from "@azure/identity";
 import express from "express";
 import path from "path";
 
-// Initialize Express app
 const app = express();
 const port = process.env.PORT || 5000;
 

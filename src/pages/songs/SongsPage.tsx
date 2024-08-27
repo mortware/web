@@ -1,6 +1,5 @@
-import { listSongs, Song, test } from "@data/api";
+import { test } from "@data/api";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { SearchBar } from "@components/SearchBar";
 

@@ -4,19 +4,18 @@ name: Trigger auto deployment for app-mortware
 on:
   # Automatically trigger it when detected changes in repo
   push:
-    branches: 
-      [ main ]
+    branches: [main]
     paths:
-    - '**'
-    - '.github/workflows/app-mortware-AutoDeployTrigger-0a016b84-0978-43b5-b113-53a8c08877fc.yml'
+      - "**"
+      - ".github/workflows/app-mortware-AutoDeployTrigger-0a016b84-0978-43b5-b113-53a8c08877fc.yml"
 
-  # Allow manual trigger 
-  workflow_dispatch:      
+  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions: 
+    permissions:
       id-token: write #This is required for requesting the OIDC JWT Token
       contents: read #Required when GH token is used to authenticate with private repo
 
@@ -34,14 +33,12 @@ jobs:
       - name: Build and push container image to registry
         uses: azure/container-apps-deploy-action@v2
         with:
-          appSourcePath: ${{ github.workspace }} 
+          appSourcePath: ${{ github.workspace }}
           registryUrl: docker.io
           registryUsername: ${{ secrets.APPMORTWARE_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.APPMORTWARE_REGISTRY_PASSWORD }}
           containerAppName: app-mortware
           resourceGroup: rg-mortware
-          imageToBuild: mortware/app-mortware:${{ github.sha }}
+          imageToBuild: mortware/web:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
-
-

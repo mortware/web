@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  web:
+    image: mortware/web
+    environment:
+      - AZURE_SQL_CONNECTIONSTRING="Data Source=mortware.database.windows.net;Initial Catalog=mortware;Authentication=Active Directory Default;Encrypt=True;"
+      - AZURE_BLOB_CONNECTIONSTRING="https://mortware.blob.core.windows.net/"
+      - AUTH0_DOMAIN="https://mortware.uk.auth0.com/"
+      - AUTH0_AUDIENCE="https://mortware.net/api/tracks"
+    ports:
+      - "3000:8080"

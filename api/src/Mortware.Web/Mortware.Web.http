@@ -1,0 +1,6 @@
+@Mortware.Web_HostAddress = http://localhost:5001
+
+GET {{Mortware.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

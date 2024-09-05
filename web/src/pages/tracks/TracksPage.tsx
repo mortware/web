@@ -9,8 +9,6 @@ function TracksPage() {
 
   const { data: tracks, isLoading } = useListTracks({ filter });
 
-  if (isLoading) return <div>Loading...</div>;
-
   function handleArtistClick(artist: string) {
     setFilter(artist);
   }
@@ -25,17 +23,22 @@ function TracksPage() {
         onReset={() => setFilter("")}
       />
 
+      {isLoading && <div>Loading...</div>}
+      <div className="text-sm">
+        {tracks?.count} of {tracks?.totalCount} tracks. Use search to filter.
+      </div>
+
       <table className="table-fixed w-full text-sm">
         <thead>
           <tr>
             <th>Title</th>
             <th>Artist</th>
-            <th>BPM</th>
-            <th>Key</th>
+            <th className="text-right">BPM</th>
+            <th className="text-right">Key</th>
           </tr>
         </thead>
         <tbody>
-          {tracks?.map((track: Track) => (
+          {tracks?.value.map((track: Track) => (
             <tr key={track.id} className="hover:bg-slate-100">
               <td>
                 <Link
@@ -50,8 +53,8 @@ function TracksPage() {
                   {track.artist}
                 </a>
               </td>
-              <td>{track.tempo}</td>
-              <td>{track.songKey}</td>
+              <td className="text-right">{track.tempo.toFixed(0)}</td>
+              <td className="text-right">{track.songKey}</td>
             </tr>
           ))}
         </tbody>

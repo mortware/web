@@ -28,6 +28,12 @@ export type SocialLink = {
   url: string;
 }
 
+export type CollectionResponse<T> = {
+  value: T[];
+  count: number;
+  totalCount: number;
+}
+
 export type Track = {
   id: string;
   artist: string;

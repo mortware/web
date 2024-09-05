@@ -2,8 +2,11 @@
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using Mortware.Web.Data;
 using Mortware.Web.Data.Models;
+using Mortware.Web.Requests;
+using Mortware.Web.Responses;
 
 namespace Mortware.Web.Services;
 
@@ -34,36 +37,45 @@ public class TrackService(MusicDbContext dbContext, BlobServiceClient blobServic
         return track;
     }
 
-    public async Task<IEnumerable<Track>> ListTracks(int? first = null, string? filter = null, decimal? tempo = null, bool? tempoVariable = null, string? songKey = null)
+    public async Task<CollectionResponse<Track>> ListTracks(ListTracksRequest request)
     {
         var query = dbContext
             .Tracks
             .AsNoTracking();
 
-        if (!string.IsNullOrWhiteSpace(filter))
+        var totalCount = await query.CountAsync();
+        
+        if (!string.IsNullOrWhiteSpace(request.Filter))
         {
-            query = query.Where(s => s.Artist.Contains(filter) || s.Title.Contains(filter));
+            query = query.Where(s => s.Artist.Contains(request.Filter) || s.Title.Contains(request.Filter));
         }
 
-        if (tempo.HasValue)
+        if (request.Tempo.HasValue)
         {
-            query = query.Where(s => s.Tempo == tempo);
+            query = query.Where(s => s.Tempo == request.Tempo);
         }
 
-        if (tempoVariable.HasValue)
+        if (request.TempoVariable.HasValue)
         {
-            query = query.Where(s => s.TempoVariable == tempoVariable);
+            query = query.Where(s => s.TempoVariable == request.TempoVariable);
         }
 
-        if (!string.IsNullOrWhiteSpace(songKey))
+        if (!string.IsNullOrWhiteSpace(request.SongKey))
         {
-            query = query.Where(s => s.SongKey == songKey);
+            query = query.Where(s => s.SongKey == request.SongKey);
         }
-
-        return await query
+        
+        var items = await query
             .OrderBy(s => s.Artist)
-            .Take(first ?? 100)
+            .Take(request.First ?? 100)
             .ToListAsync();
+
+        return new CollectionResponse<Track>
+        {
+            Value = items,
+            Count = items.Count,
+            TotalCount = totalCount
+        };
     }
 
     public async Task<Stream> DownloadStem(Guid trackId, Guid stemId, CancellationToken cancellationToken)
@@ -181,7 +193,7 @@ public class TrackService(MusicDbContext dbContext, BlobServiceClient blobServic
 public interface ITrackService
 {
     Task<Track?> GetTrack(Guid id);
-    Task<IEnumerable<Track>> ListTracks(int? first = null, string? filter = null, decimal? tempo = null, bool? tempoVariable = null, string? songKey = null);
+    Task<CollectionResponse<Track>> ListTracks(ListTracksRequest request);
 
     Task<Stream> DownloadStem(Guid trackId, Guid stemId, CancellationToken cancellationToken);
     Task<Stream> DownloadMix(Guid trackId, Guid mixId, CancellationToken cancellationToken);

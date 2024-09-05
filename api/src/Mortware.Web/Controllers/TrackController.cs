@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mortware.Web.Data.Models;
+using Mortware.Web.Requests;
 using Mortware.Web.Services;
 
 namespace Mortware.Web.Controllers;
@@ -12,9 +13,9 @@ namespace Mortware.Web.Controllers;
 public class TrackController(ITrackService trackService) : ControllerBase
 {
     [HttpGet("tracks")]
-    public async Task<IActionResult> ListTracks([FromQuery] int? first = null, [FromQuery] string? filter = null, [FromQuery] decimal? tempo = null, [FromQuery] bool? tempoVariable = null, [FromQuery] string? songKey = null)
+    public async Task<IActionResult> ListTracks([FromQuery] ListTracksRequest request)
     {
-        var tracks = await trackService.ListTracks(first, filter, tempo, tempoVariable, songKey);
+        var tracks = await trackService.ListTracks(request);
         return Ok(tracks);
     }
 

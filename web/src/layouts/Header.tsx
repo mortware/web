@@ -5,7 +5,7 @@ import Authorised from "@/components/auth/Authorised";
 
 export default function Header() {
   return (
-    <header className="print:hidden bg-brand-primary text-white sticky w-full top-0 z-50">
+    <header className="print:hidden bg-brand-primary text-white sticky w-full top-0 z-50 h-16 flex items-center">
       <div className="container flex items-center justify-between mx-auto">
         <section className="">
           <div className="p-3">

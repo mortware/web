@@ -15,8 +15,8 @@ public class TrackController(ITrackService trackService) : ControllerBase
     [HttpGet("tracks")]
     public async Task<IActionResult> ListTracks([FromQuery] ListTracksRequest request)
     {
-        var tracks = await trackService.ListTracks(request);
-        return Ok(tracks);
+        var result = await trackService.ListTracks(request);
+        return Ok(result);
     }
 
     [HttpGet("track/{id:guid}")]

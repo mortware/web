@@ -44,7 +44,7 @@ public class TrackService(MusicDbContext dbContext, BlobServiceClient blobServic
             .AsNoTracking();
 
         var totalCount = await query.CountAsync();
-        
+
         if (!string.IsNullOrWhiteSpace(request.Filter))
         {
             query = query.Where(s => s.Artist.Contains(request.Filter) || s.Title.Contains(request.Filter));
@@ -64,7 +64,7 @@ public class TrackService(MusicDbContext dbContext, BlobServiceClient blobServic
         {
             query = query.Where(s => s.SongKey == request.SongKey);
         }
-        
+
         var items = await query
             .OrderBy(s => s.Artist)
             .Take(request.First ?? 100)
@@ -87,9 +87,9 @@ public class TrackService(MusicDbContext dbContext, BlobServiceClient blobServic
         if (track is null) throw new InvalidOperationException(TrackNotFoundMessage);
 
         var stem = track.Stems?.FirstOrDefault(s => s.Id == stemId);
-        if (stem is null) throw new InvalidOperationException(StemNotFoundMessage);
+        if (stem is null || string.IsNullOrWhiteSpace(stem.BlobName)) throw new InvalidOperationException(StemNotFoundMessage);
 
-        return await GetBlob(stem.Filename, cancellationToken);
+        return await GetBlob(stem.BlobName, cancellationToken);
     }
 
     public async Task<TrackFileStream> GetStemStream(Guid trackId, Guid stemId, string? range, CancellationToken cancellationToken)
@@ -98,9 +98,9 @@ public class TrackService(MusicDbContext dbContext, BlobServiceClient blobServic
         if (track is null) throw new InvalidOperationException(TrackNotFoundMessage);
 
         var stem = track.Stems?.Single(s => s.Id == stemId);
-        if (stem is null) throw new InvalidOperationException(StemNotFoundMessage);
+        if (stem is null || string.IsNullOrWhiteSpace(stem.BlobName)) throw new InvalidOperationException(StemNotFoundMessage);
 
-        return await GetStream(stem.Filename, range, cancellationToken);
+        return await GetStream(stem.BlobName, range, cancellationToken);
     }
 
     public async Task<Stream> DownloadMix(Guid trackId, Guid mixId, CancellationToken cancellationToken)
@@ -112,9 +112,9 @@ public class TrackService(MusicDbContext dbContext, BlobServiceClient blobServic
         if (track is null) throw new InvalidOperationException(TrackNotFoundMessage);
 
         var mix = track.Mixes?.FirstOrDefault(s => s.Id == mixId);
-        if (mix is null) throw new InvalidOperationException(MixNotFoundMessage);
+        if (mix is null || string.IsNullOrWhiteSpace(mix.BlobName)) throw new InvalidOperationException(MixNotFoundMessage);
 
-        return await GetBlob(mix.Filename, cancellationToken);
+        return await GetBlob(mix.BlobName, cancellationToken);
     }
 
     public async Task<TrackFileStream> GetMixStream(Guid trackId, Guid mixId, string? range, CancellationToken cancellationToken)
@@ -123,9 +123,9 @@ public class TrackService(MusicDbContext dbContext, BlobServiceClient blobServic
         if (track is null) throw new InvalidOperationException(TrackNotFoundMessage);
 
         var mix = track.Mixes?.FirstOrDefault(s => s.Id == mixId);
-        if (mix is null) throw new InvalidOperationException(MixNotFoundMessage);
+        if (mix is null || string.IsNullOrWhiteSpace(mix.BlobName)) throw new InvalidOperationException(MixNotFoundMessage);
 
-        return await GetStream(mix.Filename, range, cancellationToken);
+        return await GetStream(mix.BlobName, range, cancellationToken);
     }
 
     private async Task<Stream> GetBlob(string blobName, CancellationToken cancellationToken)

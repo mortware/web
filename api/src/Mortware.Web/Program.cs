@@ -23,7 +23,6 @@ builder.Configuration.AddJsonFile(builder.Environment.IsDevelopment() ? "appsett
 builder.Configuration.AddEnvironmentVariables();
 
 var databaseConnectionString = builder.Configuration.GetConnectionString("AzureSql")!;
-var blobStorageUri = builder.Configuration["Azure:BlobStorageUri"]!;
 var auth0Domain = builder.Configuration["Auth0:Domain"]!;
 var auth0Audience = builder.Configuration["Auth0:Audience"]!;
 
@@ -49,7 +48,8 @@ builder.Services.AddDbContext<MusicDbContext>(o => o.UseSqlServer(databaseConnec
 builder.Services.AddScoped<ITrackService, TrackService>();
 builder.Services.AddAzureClients(clientBuilder =>
 {
-    clientBuilder.AddBlobServiceClient(new Uri(blobStorageUri));
+    clientBuilder.AddBlobServiceClient(new Uri(builder.Configuration["Azure:BlobStorageUri"]!));
+    clientBuilder.AddQueueServiceClient(new Uri(builder.Configuration["Azure:QueueStorageUri"]!));
     clientBuilder.UseCredential(new DefaultAzureCredential());
 });
 

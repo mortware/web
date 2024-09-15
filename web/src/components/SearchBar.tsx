@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils/css";
 import { useDebounce } from "../hooks/use-debounce";
 import Icon from "./Icon";
 import { InputHTMLAttributes, useEffect, useState } from "react";
@@ -14,6 +15,7 @@ export function SearchBar({
   value = "",
   onChange,
   onReset,
+  className,
   ...props
 }: SearchBarProps) {
   const [searchValue, setSearchValue] = useState(value ?? "");
@@ -39,7 +41,12 @@ export function SearchBar({
     onReset?.();
   };
   return (
-    <div className="flex gap-1 items-center bg-white p-2 rounded">
+    <div
+      className={cn([
+        className,
+        "flex gap-1 items-center bg-white p-2 rounded",
+      ])}
+    >
       <Icon icon="search" />
       <input
         type="text"

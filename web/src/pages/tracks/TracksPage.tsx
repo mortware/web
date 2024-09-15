@@ -15,65 +15,70 @@ function TracksPage() {
   }
 
   return (
-    <div className="container flex flex-col gap-2">
-      <div className="sticky top-16">
-        <h1>Tracks</h1>
-        <SearchBar
-          debounce={500}
-          value={filter}
-          onChange={setFilter}
-          onReset={() => setFilter("")}
-        />
+    <div>
+      <div className="sticky top-16 w-full bg-white">
+        <div className="flex container items-center gap-4">
+          <h1>Tracks</h1>
+          <SearchBar
+            className="flex-1"
+            debounce={500}
+            value={filter}
+            onChange={setFilter}
+            onReset={() => setFilter("")}
+          />
+        </div>
       </div>
 
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <>
-          <div className="text-sm">
-            {tracks?.count} of {tracks?.totalCount} tracks. Use search to
-            filter.
-          </div>
+      <div className="container flex flex-col gap-2">
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <>
+            <div className="text-sm">
+              {tracks?.count} of {tracks?.totalCount} tracks. Use search to
+              filter.
+            </div>
 
-          <table className="table-fixed w-full text-sm">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Artist</th>
-                <th className="text-right">BPM</th>
-                <th className="text-right">Key</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tracks?.value.map((track: Track) => (
-                <tr key={track.id} className="hover:bg-slate-100">
-                  <td>
-                    <Link
-                      to={`/track/${track.id}`}
-                      className="font-semibold text-blue-500"
-                    >
-                      {track.title}
-                    </Link>
-                  </td>
-                  <td>
-                    <a
-                      href="#"
-                      onClick={() => handleArtistClick(track.artist)}
-                      title="Search for more tracks by this artist"
-                      className="flex items-center gap-1"
-                    >
-                      {track.artist}
-                      <Icon icon="search" className="opacity-50" size={16} />
-                    </a>
-                  </td>
-                  <td className="text-right">{track.tempo.toFixed(0)}</td>
-                  <td className="text-right">{track.songKey}</td>
+            <table className="table-auto w-full text-sm">
+              <thead>
+                <tr>
+                  <th className="w-[30%]">Title</th>
+                  <th className="w-[30%]">Artist</th>
+                  <th className="w-[10%] text-right">BPM</th>
+                  <th className="w-[10%] text-right">Key</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      )}
+              </thead>
+              <tbody>
+                {tracks?.value.map((track: Track) => (
+                  <tr key={track.id} className="hover:bg-slate-100 border-b">
+                    <td>
+                      <Link
+                        to={`/track/${track.id}`}
+                        className="font-semibold text-blue-500"
+                      >
+                        {track.title}
+                      </Link>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        onClick={() => handleArtistClick(track.artist)}
+                        title="Search for more tracks by this artist"
+                        className="flex items-center gap-1"
+                      >
+                        {track.artist}
+                        <Icon icon="search" className="opacity-50" size={16} />
+                      </a>
+                    </td>
+                    <td className="text-right">{track.tempo?.toFixed(0)}</td>
+                    <td className="text-right">{track.songKey}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
+      </div>
     </div>
   );
 }

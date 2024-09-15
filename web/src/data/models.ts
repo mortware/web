@@ -38,11 +38,11 @@ export type Track = {
   id: string;
   artist: string;
   title: string;
-  slug: string;
-  duration: string;
-  tempo: number;
-  tempoVariable: boolean;
-  songKey: string;
+  slug?: string;
+  duration?: string;
+  tempo?: number;
+  tempoVariable?: boolean;
+  songKey?: string;
 }
 
 export type TrackDetails = {

@@ -58,7 +58,7 @@ public class TrackController(ITrackService trackService) : ControllerBase
         var trackStream = await trackService.GetMixStream(trackId, mixId, range, cancellationToken);
         return GetFileStreamResult(trackStream);
     }
-
+    
     private FileStreamResult GetFileStreamResult(TrackFileStream trackStream)
     {
         Response.StatusCode = (int)HttpStatusCode.PartialContent; //206

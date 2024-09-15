@@ -19,9 +19,8 @@ public class TrackConfiguration : IEntityTypeConfiguration<Track>
         builder.Property(x => x.Title)
             .IsRequired()
             .HasMaxLength(100);
-        
+
         builder.Property(x => x.Slug)
-            .IsRequired()
             .HasMaxLength(200);
 
         builder.Property(x => x.SourceUrl)
@@ -33,17 +32,14 @@ public class TrackConfiguration : IEntityTypeConfiguration<Track>
             .HasMaxLength(100);
 
         builder.Property(x => x.Duration)
-            .IsRequired()
             .HasMaxLength(10);
 
         builder.Property(x => x.SongKey)
-            .IsRequired()
             .HasMaxLength(50);
 
         builder.Property(x => x.Tempo)
-            .IsRequired()
             .HasPrecision(5, 2);
-        
+
         builder.Ignore(x => x.FullMix);
 
         builder.HasMany(x => x.Stems).WithOne().HasForeignKey("TrackId");

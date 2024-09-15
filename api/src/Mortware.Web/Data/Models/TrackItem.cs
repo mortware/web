@@ -8,5 +8,8 @@ public abstract class TrackItem
     public required string Name { get; init; }
     public required string Slug { get; init; }
     public abstract string Type { get; }
-    [JsonIgnore] public string Filename { get; init; } = string.Empty;
+    public DateTime? Created { get; init; }
+    public DateTime? Updated { get; init; }
+    [JsonIgnore] public string? BlobName { get; init; }
+    [JsonIgnore] public DateTime? BlobCreated { get; init; }
 }

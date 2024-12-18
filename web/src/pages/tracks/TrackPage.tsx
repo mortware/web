@@ -1,7 +1,7 @@
 import Icon from "@/components/Icon";
 import { Link, useParams } from "react-router-dom";
 import { useGetTrack } from "@/data/hooks/use-get-track";
-import TrackItem from "@/components/tracks/TrackItem";
+import TrackFile from "@/components/tracks/TrackFile";
 
 const TrackPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -29,8 +29,8 @@ const TrackPage = () => {
             <section className="py-2 px-4 bg-slate-200">
               <ul>
                 <li>
-                  BPM: {track?.tempo}{" "}
-                  {track?.tempoVariable && (
+                  BPM: {track?.tempo?.bpm}{" "}
+                  {track?.tempo?.variable && (
                     <span>
                       <Icon icon="variable" />
                     </span>
@@ -41,8 +41,8 @@ const TrackPage = () => {
               </ul>
             </section>
             {track?.fullMix && (
-              <TrackItem
-                key={track?.fullMix?.id}
+              <TrackFile
+                key={track?.fullMix?.slug}
                 track={track}
                 item={track?.fullMix}
               />
@@ -55,7 +55,7 @@ const TrackPage = () => {
                   {track?.stems
                     .sort((a, b) => a.order - b.order)
                     .map((stem) => (
-                      <TrackItem key={stem.id} track={track} item={stem} />
+                      <TrackFile key={stem.slug} track={track} item={stem} />
                     ))}
                 </div>
               </section>
@@ -67,7 +67,7 @@ const TrackPage = () => {
                 </p>
                 <div className="flex flex-col gap-1">
                   {track?.mixes.map((mix) => (
-                    <TrackItem key={mix.id} track={track} item={mix} />
+                    <TrackFile key={mix.slug} track={track} item={mix} />
                   ))}
                 </div>
               </section>

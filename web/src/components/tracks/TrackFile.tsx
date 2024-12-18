@@ -1,21 +1,21 @@
 import { Track, Stem, Mix } from "@/data/models";
 import Icon from "../Icon";
-import { useDownloadTrackItem } from "@/data/hooks/use-download-track-item";
+import { useDownloadTrackFile } from "@/data/hooks/use-download-track-file";
 import Spinner from "../Spinner";
 
-type TrackItemProps = {
+type TrackFileProps = {
   track: Track;
   item: Stem | Mix;
 };
 
-function TrackItem({ track, item }: TrackItemProps) {
-  const { download, isDownloading } = useDownloadTrackItem();
+function TrackFile({ track, item }: TrackFileProps) {
+  const { download, isDownloading } = useDownloadTrackFile();
 
-  async function handleDownload(item: Stem | Mix) {
-    console.log("Downloading stem", item.id);
-    if (!track) return;
+  async function handleDownload(file: Stem | Mix) {
+    console.log(`Downloading ${file.type}`, file.slug);
+    if (!track || !track.slug) return;
 
-    await download(track.id, item, `${track.slug}-${item.slug}.mp3`);
+    await download(track.slug, file, `${track.slug}-${file.slug}.mp3`);
   }
 
   return (
@@ -42,4 +42,4 @@ function TrackItem({ track, item }: TrackItemProps) {
   );
 }
 
-export default TrackItem;
+export default TrackFile;

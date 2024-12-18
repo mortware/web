@@ -2,7 +2,8 @@
 
 namespace Mortware.Web.Data.Models;
 
-public class Mix : TrackItem
+public class Mix
 {
-    public override string Type => "Mix";
+    public string? Name { get; init; }
+    public string? Slug { get; init; }
 }

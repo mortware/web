@@ -40,9 +40,13 @@ export type Track = {
   title: string;
   slug?: string;
   duration?: string;
-  tempo?: number;
-  tempoVariable?: boolean;
+  tempo?: Tempo;
   songKey?: string;
+}
+
+export type Tempo = {
+  bpm?: number;
+  variable?: boolean;
 }
 
 export type TrackDetails = {
@@ -53,8 +57,7 @@ export type TrackDetails = {
   lyrics: string;
 } & Track;
 
-export type TrackItem = {
-  id: string;
+export type TrackFile = {
   name: string;
   slug: string;
   type: "Stem" | "Mix";
@@ -63,7 +66,7 @@ export type TrackItem = {
 export type Stem = {
   color: string;
   order: number;
-} & TrackItem;
+} & TrackFile;
 
 export type Mix = {
-} & TrackItem
+} & TrackFile

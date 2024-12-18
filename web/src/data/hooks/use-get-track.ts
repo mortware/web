@@ -3,16 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { TrackDetails } from "../models";
 
-export function useGetTrack(trackId: string) {
+export function useGetTrack(trackSlug: string) {
   const { getAccessTokenSilently } = useAuth0();
 
   const baseUrl = import.meta.env.VITE_API_URL;
 
   const query = useQuery({
-    queryKey: ["track", trackId],
+    queryKey: ["track", trackSlug],
     queryFn: async () => {
       const token = await getAccessTokenSilently();
-      const response = await axios.get<TrackDetails>(`${baseUrl}/track/${trackId}`, {
+      const response = await axios.get<TrackDetails>(`${baseUrl}/track/${trackSlug}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

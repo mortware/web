@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { CollectionResponse, Track } from "../models";
+import { Track } from "../models";
 
 export type ListSongsParams = {
   first?: number;
@@ -20,7 +20,7 @@ export function useListTracks(params: ListSongsParams) {
     queryKey: ["tracks", params],
     queryFn: async () => {
       const token = await getAccessTokenSilently();
-      const response = await axios.get<CollectionResponse<Track>>(`${baseUrl}/tracks`, {
+      const response = await axios.get<Track[]>(`${baseUrl}/tracks`, {
         params,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -29,9 +29,13 @@ export function useListTracks(params: ListSongsParams) {
       if (response.status !== 200) {
         throw new Error("Failed to fetch tracks");
       }
-      return response.data;
+      return { tracks: response.data };
     },
   });
 
-  return { ...query };
+  return {
+    tracks: query.data?.tracks,
+    isLoading: query.isLoading,
+    error: query.error
+  };
 }

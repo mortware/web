@@ -7,54 +7,68 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2
-      with: 
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-    - name: Cache Docker Layers
-      uses: actions/cache@v3
-      with:
-        path: /tmp/.buildx-cache
-        key: ${{ runner.os}}-docker-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-docker-
-    
-    - name: Build and push the Docker image
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        push: true
-        tags: |
-          mortware/web:latest
-          mortware/web:${{ github.sha }}
+      - name: Cache Docker Layers
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-docker-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-docker-
 
-    - name: Verify image
-      run: |
-        echo "Image built and pushed successfully!"
+      - name: Build Docker Image
+        run: |
+          docker buildx build \
+            --cache-to type=inline \
+            --cache-from type=registry,ref=mortware/web:cache \
+            --tag mortware/web:latest \
+            --tag mortware/web:${{ github.sha }} \
+            .
 
-    - name: Log in to Azure
-      uses: azure/login@v1
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+  push:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-    - name: Deploy to Azure Container App
-      run: |
-        az containerapp update \
-          --name app-mortware \
-          --resource-group rg-mortware \
-          --image mortware/web:latest \
-          --query "properties.configuration.activeRevisions[0].name"
-  
+      - name: Log in to Docker Hub
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Push Docker Image
+        run: |
+          docker push mortware/web:latest
+          docker push mortware/web:${{ github.sha }}
+
+  deploy:
+    needs: push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+
+      - name: Deploy to Azure Container App
+        run: |
+          az containerapp update \
+            --name app-mortware \
+            --resource-group rg-mortware \
+            --image mortware/web:latest
+
+      - name: Verify Deployment
+        run: |
+          az containerapp show \
+            --name app-mortware \
+            --resource-group rg-mortware \
+            --query "{name:name, status:properties.provisioningState, image:properties.configuration.activeRevisions[0].image}" \
+            --output table

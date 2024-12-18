@@ -24,7 +24,8 @@ builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.Configure<JsonOptions>(o => { o.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; });
 
-builder.Configuration.AddJsonFile(builder.Environment.IsDevelopment() ? "appsettings.development.json" : "appsettings.json");
+
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 builder.Configuration.AddEnvironmentVariables();
 
 var auth0Domain = builder.Configuration["Auth0:Domain"]!;
@@ -81,8 +82,7 @@ app.Use(async (context, next) =>
 });
 
 app.UseCors(policy => policy
-    //.AllowAnyOrigin()
-    .WithOrigins("http://localhost:3000")
+    .AllowAnyOrigin()
     .AllowAnyHeader()
     .AllowAnyMethod());
 app.UseHttpsRedirection();
@@ -90,9 +90,12 @@ app.UseRouting();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-app.MapGet<DownloadTrackFileRequest>("api/track/{track}/{slug}/download");
-app.MapGet<ListTracksRequest>("api/tracks");
-app.MapGet<GetTrackRequest>("api/track/{slug}");
+app.MapGet<DownloadTrackFileRequest>("api/track/{track}/{slug}/download")
+    .RequireAuthorization("read:tracks");
+app.MapGet<ListTracksRequest>("api/tracks")
+    .RequireAuthorization("read:tracks");
+app.MapGet<GetTrackRequest>("api/track/{slug}")
+    .RequireAuthorization("read:tracks");
 
 app.UseAuthentication();
 app.UseAuthorization();

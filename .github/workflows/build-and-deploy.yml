@@ -26,11 +26,9 @@ jobs:
       uses: actions/cache@v3
       with:
         path: /tmp/.buildx-cache
-        key: ${{ ruunner.os}}-docker-${{ github.sha }}
+        key: ${{ runner.os}}-docker-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-docker-
-
-      
     
     - name: Build and push the Docker image
       uses: docker/build-push-action@v5

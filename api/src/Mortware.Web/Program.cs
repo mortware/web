@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using System.Text.Json.Serialization;
 using Azure.Identity;
-using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,0 +1,76 @@
+permissions:
+  id-token: write
+  contents: read
+
+name: CICD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Cache Docker layers
+      - name: Cache Docker Layers
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-docker-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-docker-
+
+      # Log in to Docker Hub
+      - name: Log in to Docker Hub
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      # Build and Push Docker Image     
+      - name: Build and Push Docker Image
+        run: |
+          docker buildx build \
+            --cache-to type=inline \
+            --cache-from type=registry,ref=mortware/web:cache \
+            --tag mortware/web:latest \
+            --tag mortware/web:${{ github.sha }} \
+            --push \
+            .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      
+      # Log in to Azure
+      - name: Log in to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # Deploy to Azure Container App
+      - name: Deploy to Azure Container App
+        run: |
+          az containerapp update \
+            --name app-mortware \
+            --resource-group rg-mortware \
+            --image mortware/web:latest
+
+      # Verify Deployment
+      - name: Verify Deployment
+        run: |
+          az containerapp show \
+            --name app-mortware \
+            --resource-group rg-mortware \
+            --query "{name:name, status:properties.provisioningState, image:properties.configuration.activeRevisions[0].image}" \
+            --output table

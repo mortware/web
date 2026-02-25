@@ -28,6 +28,9 @@ export function App() {
           }
         />
       </Routes>
+      <footer className="print:hidden py-4 text-center text-xs text-slate-400 dark:text-slate-500">
+        &copy; {new Date().getFullYear()} Mortware
+      </footer>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { ThemeToggle } from './ThemeToggle'
 import ResumePage from './resume/ResumePage'
 

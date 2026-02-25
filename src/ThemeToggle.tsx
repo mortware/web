@@ -57,7 +57,7 @@ export function ThemeToggle() {
               ? 'bg-slate-900 text-slate-50 dark:bg-slate-100 dark:text-slate-900'
               : 'bg-transparent'
           }`}
-          aria-pressed={mode === 'system'}
+          aria-pressed={mode === 'system' ? 'true' : 'false'}
           aria-label="Use system theme"
           title="System"
         >
@@ -83,7 +83,7 @@ export function ThemeToggle() {
               ? 'bg-slate-900 text-slate-50 dark:bg-slate-100 dark:text-slate-900'
               : 'bg-transparent'
           }`}
-          aria-pressed={mode === 'light'}
+          aria-pressed={mode === 'light' ? 'true' : 'false'}
           aria-label="Use light theme"
           title="Light"
         >
@@ -109,7 +109,7 @@ export function ThemeToggle() {
               ? 'bg-slate-900 text-slate-50 dark:bg-slate-100 dark:text-slate-900'
               : 'bg-transparent'
           }`}
-          aria-pressed={mode === 'dark'}
+          aria-pressed={mode === 'dark' ? 'true' : 'false'}
           aria-label="Use dark theme"
           title="Dark"
         >

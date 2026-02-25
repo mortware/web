@@ -3,6 +3,8 @@ import { ThemeToggle } from './ThemeToggle'
 import ResumePage from './resume/ResumePage'
 
 export function App() {
+  const year = new Date().getFullYear()
+
   return (
     <div className="app-shell">
       <div className="print:hidden">
@@ -28,6 +30,9 @@ export function App() {
           }
         />
       </Routes>
+      <footer className="print:hidden py-6 text-center text-xs text-slate-400 dark:text-slate-600">
+        &copy; {year} Mortware
+      </footer>
     </div>
   )
 }
